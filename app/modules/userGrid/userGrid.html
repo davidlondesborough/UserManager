@@ -15,14 +15,14 @@
     <div class="col-lg-12">
         <table class="table">
             <thead>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Registered Date</th>
-                <th>Email</th>
-                <th>Balance</th>
+                <th ng-click="sort('Name')">Name</th>
+                <th ng-click="sort('Age')">Age</th>
+                <th ng-click="sort('RegisteredDate')">Registered Date</th>
+                <th ng-click="sort('Email')">Email</th>
+                <th ng-click="sort('Balance')">Balance</th>
             </thead>
             <tbody>
-                <tr ng-repeat="x in model.records | orderBy: 'Name'">
+                <tr ng-repeat="x in model.records">
                     <td>{{x.Name}}</td>
                     <td>{{x.Age}}</td>
                     <td>{{x.RegisteredDate}}</td>

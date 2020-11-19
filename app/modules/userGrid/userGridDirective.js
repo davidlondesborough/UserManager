@@ -5,7 +5,11 @@ export default function userGridDirective() {
             //default the model
             if (!$scope.model) $scope.model = {
                 searchText: "",
-                records: []
+                records: [],
+                sorting: {
+                    field: 'Name',
+                    sortAsc: true
+                }
             };
 
             let data = [];
@@ -22,6 +26,8 @@ export default function userGridDirective() {
                         Email: item.email,
                         Balance: item.balance
                     }));
+
+                    data.sort((x, y) => x.Name > y.Name);
 
                     $scope.model.records = data;
                 }
@@ -55,6 +61,15 @@ export default function userGridDirective() {
                     })
                 ]
             };
+
+            $scope.sort = (field) => {
+                $scope.model.sorting = {
+                    field: field,
+                    sortAsc: field === $scope.model.sorting.field && $scope.model.sorting.sortAsc ? false : true
+                }
+
+                $scope.model.records.sort((x, y) => $scope.model.sorting.sortAsc ? x[field] > y[field] : x[field] < y[field]);
+            }
         }]
     }
 }
